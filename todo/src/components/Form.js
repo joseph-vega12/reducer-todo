@@ -26,11 +26,12 @@ function Form() {
                 <button onClick={addDispatch}>Submit</button>
             </form>
             {state.map(item =>
-                <li key={item.id}onClick={() => {dispatch({ type: "TOGGLE_TODO", payload: item.id })}}
-                style={!item.completed ? { textDecoration: 'none' } : { textDecoration: 'line-through', color: 'red'}}
+                <li key={item.id} onClick={() => { dispatch({ type: "TOGGLE_TODO", payload: item.id }) }}
+                    style={!item.completed ? { textDecoration: 'none' } : { textDecoration: 'line-through', color: 'red' }}
                 >{item.item}</li>
             )
             }
+            <button onClick={() => {dispatch({ type: 'REMOVE_TODO' })}}>CLEAR</button>
         </div >
     );
 }

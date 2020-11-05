@@ -1,5 +1,6 @@
 export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const REMOVE_TODO = 'REMOVE_TODO'; 
 
 export const initialState = [
     {
@@ -28,6 +29,8 @@ const reducer = (state, action) => {
                         completed: !todo.completed,
                     }
                     : todo)
+        case REMOVE_TODO:
+            return state.filter(todo => todo.completed === false)
         default:
             return (state)
     }
