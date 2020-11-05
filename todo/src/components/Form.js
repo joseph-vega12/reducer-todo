@@ -26,8 +26,9 @@ function Form() {
                 <button onClick={addDispatch}>Submit</button>
             </form>
             {state.map(item =>
-                <li onClick={() => {dispatch({ type: "TOGGLE_TODO", payload: item.id })}}key={item.id}>{item.item}</li>
-                // <li key={item.id}>{ item.item }</li>
+                <li key={item.id}onClick={() => {dispatch({ type: "TOGGLE_TODO", payload: item.id })}}
+                style={!item.completed ? { textDecoration: 'none' } : { textDecoration: 'line-through', color: 'red'}}
+                >{item.item}</li>
             )
             }
         </div >
