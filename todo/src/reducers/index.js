@@ -1,32 +1,67 @@
-export const initialState = {
-    inputVal: '', todos: [{
+export const ADD_TODO = 'ADD_TODO';
+export const TOGGLE_TODO = 'TOGGLE_TODO';
+
+export const initialState = [
+    {
         item: 'Learn about reducers',
         completed: false,
         id: 3892987589
-    }]
-}
-
+    }
+]
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'add':
-            return {
+        case ADD_TODO:
+            return [
                 ...state,
-                inputVal: '',
-                todos: [
-                    ...state.todos,
+                {
+                    item: action.payload,
+                    completed: false,
+                    id: Date.now(),
+                }
+            ]
+        case TOGGLE_TODO:
+            return state.map(todo =>
+                todo.id === action.payload ?
                     {
-                        item: state.inputVal,
-                        completed: false,
-                        id: Date.now(),
+                        ...todo,
+                        completed: !todo.completed,
                     }
-                ]
-            }
-        case 'updateVal':
-            return { ...state, inputVal: action.payload.value }
+                    : todo)
         default:
-            return state
+            return (state)
     }
 }
 
 export default reducer;
+
+// export const initialState = {
+//     inputVal: '', todos: [{
+//         item: 'Learn about reducers',
+//         completed: false,
+//         id: 3892987589
+//     }]
+// }
+// const reducer = (state, action) => {
+//     switch (action.type) {
+//         case 'add':
+//             return {
+//                 ...state,
+//                 inputVal: '',
+//                 todos: [
+//                     ...state.todos,
+//                     {
+//                         item: state.inputVal,
+//                         completed: false,
+//                         id: Date.now(),
+//                     }
+//                 ]
+//             }
+//         case 'updateVal':
+//             return { ...state, inputVal: action.payload.value }
+//         default:
+//             return state
+//     }
+// }
+
+// export default reducer;
